@@ -11,8 +11,8 @@ from states import RutorSearchResultsState
 
 class RutorSearchState(State):
 
-    def __init__(self, machine: 'TorrentSearchBot') -> None:
-        self.machine: 'TorrentSearchBot' = machine
+    def __init__(self, machine) -> None:
+        self.machine = machine
 
     def on_start(self, bot: telebot.TeleBot) -> None:
         bot.send_message(self.machine.chat_id, "What do you want to download?")

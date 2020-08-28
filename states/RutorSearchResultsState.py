@@ -12,7 +12,7 @@ from states.constants import URL_RUTOR
 
 class RutorSearchResultsState(State):
     def __init__(self, machine, FILES) -> None:
-        self.machine: 'TorrentSearchBot' = machine
+        self.machine = machine
         self.FILES: typing.List = FILES
         self.shown_files: int = 0
 

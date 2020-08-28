@@ -10,10 +10,10 @@ State = states.State.State
 
 
 class RutorTorrentDetailsState(State):
-    def __init__(self, machine: 'TorrentSearchBot', file, prev_state: 'RutorSearchResultsState') -> None:
-        self.machine: 'TorrentSearchBot' = machine
+    def __init__(self, machine, file, prev_state) -> None:
+        self.machine = machine
         self.file = file
-        self.prev_state: 'RutorSearchResultsState' = prev_state
+        self.prev_state = prev_state
 
     def on_start(self, bot: telebot.TeleBot) -> None:
         link_download: str = self.file.download
