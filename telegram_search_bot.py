@@ -1,11 +1,11 @@
 import typing
-
 import telebot
 import parser
 import requests
 
 SEARCH: str = "http://www.rutor.info/search/"
 LIST_BOTS: typing.Dict[typing.Any, 'TorrentSearchBot'] = {}
+
 
 class TorrentSearchBot:
     bot: telebot.TeleBot = telebot.TeleBot('1322977421:AAHeAFwl5unLwT6KmZmGjkjrTw5Yanl4Pug')
@@ -78,7 +78,7 @@ class RutorSearchResultsState:
 
         else:
             help_message: str = "Enter '[number]' for download, or 'paginate' to see more, " \
-                           "or 'open search' or 'exit' to new search (you can use russian language)"
+                                "or 'open search' or 'exit' to new search (you can use russian language)"
             bot.send_message(self.machine.chat_id, help_message)
 
     def on_user_input(self, bot: telebot.TeleBot, message: telebot.types.Message) -> None:
@@ -115,7 +115,7 @@ class RutorSearchResultsState:
         self.shown_files += 10
 
         help_message: str = "Enter '[number]' for download, or 'paginate' to see more, " \
-                       "or 'open search' or 'exit' to new search (you can use russian language)"
+                            "or 'open search' or 'exit' to new search (you can use russian language)"
         bot.send_message(self.machine.chat_id, help_message)
 
 
