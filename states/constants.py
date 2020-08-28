@@ -1,0 +1,1 @@
+URL_RUTOR: str = "http://www.rutor.info/search/"
