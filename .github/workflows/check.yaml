@@ -30,6 +30,6 @@ jobs:
 
     - name: Lint with mypy
       run: |
-        mypy .
+        mypy . --ignore-missing-imports
 
 
