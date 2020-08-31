@@ -4,7 +4,6 @@ import typing
 import parser_html
 
 
-
 def hand_parsed_pele():
     original_files: typing.List[parser_html.File] = []
 

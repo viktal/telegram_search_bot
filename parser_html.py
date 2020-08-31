@@ -6,9 +6,9 @@ from bs4 import BeautifulSoup
 from dataclasses import dataclass
 
 
-def get_html(url) -> typing.Tuple[str, str]:
+def get_html(url: str) -> typing.Tuple[str, str]:
     socks.set_default_proxy(socks.SOCKS5, "127.0.0.1", 9150)
-    socket.socket = socks.socksocket
+    socket.socket = socks.socksocket #type: ignore
     response = requests.get(url)
     response.encoding = "utf8"
     return response.url, response.text
