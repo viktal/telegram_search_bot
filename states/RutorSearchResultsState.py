@@ -4,16 +4,16 @@ import telebot
 
 from states import RutorTorrentDetailsState, RutorSearchState
 from states.State import State
-from states.constants import URL_RUTOR
 
 # hack to avoid circular dependencies
 # https://stackoverflow.com/questions/744373/circular-or-cyclic-imports-in-python
 
 
 class RutorSearchResultsState(State):
-    def __init__(self, machine, FILES) -> None:
+    def __init__(self, machine, FILES, search_url) -> None:
         self.machine = machine
         self.FILES: typing.List = FILES
+        self.search_url: str = search_url
         self.shown_files: int = 0
 
     def on_start(self, bot: telebot.TeleBot) -> None:
@@ -29,7 +29,7 @@ class RutorSearchResultsState(State):
 
     def on_user_input(self, bot: telebot.TeleBot, message: telebot.types.Message) -> None:
         if message.text in ["open search", "открыть поиск"]:
-            bot.send_message(message.chat.id, f"You search link: {URL_RUTOR}")
+            bot.send_message(message.chat.id, f"You search link: {self.search_url}")
 
         elif message.text in ['paginate', 'пагинировать']:
             if self.shown_files > len(self.FILES):

