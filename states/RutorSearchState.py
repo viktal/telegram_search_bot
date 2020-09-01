@@ -20,14 +20,12 @@ class RutorSearchState(State):
     def on_user_input(self, bot: telebot.TeleBot, message: telebot.types.Message) -> None:
         bot.send_message(message.chat.id, "Please wait!")
 
-        with open("text.html", "w") as fh:
-            try:
-                search_url, text = parser_html.get_html(URL_RUTOR + message.text)
-            except requests.ConnectionError as err:
-                bot.send_message(message.chat.id, f"Something went wrong:( Try again\n\nERROR: {err}")
-                self.machine.update_state(RutorSearchState(self.machine))
-                return
-            fh.write(text)
+        try:
+            search_url, text = parser_html.get_html(URL_RUTOR + message.text)
+        except requests.ConnectionError as err:
+            bot.send_message(message.chat.id, f"Something went wrong:( Try again\n\nERROR: {err}")
+            self.machine.update_state(RutorSearchState(self.machine))
+            return
         FILES: typing.Optional[typing.List[parser_html.File]]
         try:
             FILES = sorted(parser_html.parser_text(text), key=lambda file: int(file.distributions), reverse=True)
