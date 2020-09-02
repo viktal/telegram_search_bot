@@ -10,7 +10,7 @@ jobs:
     - name: Deploy secrets
       run: 'echo "$DEPLOY_SSH_KEY" > key.pem'
       shell: bash
-      evn:
+      env:
         DEPLOY_SSH_KEY: ${{secrets.DEPLOY_SSH_KEY}}
 
     - name: Deploy container
