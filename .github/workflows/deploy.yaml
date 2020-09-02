@@ -1,0 +1,30 @@
+name: Workflow dispatch
+
+on: [workflow_dispatch]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy secrets
+        run: 'echo "$DEPLOY_SSH_KEY" > key.pem'
+        shell: bash
+        evn:
+          DEPLOY_SSH_KEY: ${{secrets.DEPLOY_SSH_KEY}}
+
+    - name: Deploy container
+        run: |
+          ssh -i key.pem ubuntu@${{secrets.DEPLOY_IP}}
+          git clone https://github.com/viktal/telegram_search_bot.git
+          cd telegram_search_bot
+
+          docker build -t pybot:latest .
+          docker stop $(docker ps -aq)
+          docker run pybot:latest & disown
+          docker system prune -f
+
+
+
+
+
