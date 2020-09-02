@@ -1,4 +1,4 @@
-name: Workflow dispatch
+name: Deploy to server
 
 on: [workflow_dispatch]
 
@@ -20,7 +20,7 @@ jobs:
           git clone https://github.com/viktal/telegram_search_bot.git
           cd telegram_search_bot
 
-          docker build -t pybot:latest .
-          docker stop $(docker ps -aq)
-          docker run pybot:latest & disown
-          docker system prune -f
+          sudo docker build -t pybot:latest .
+          sudo docker stop $(sudo docker ps -aq)
+          sudo docker run pybot:latest & disown
+          sudo docker system prune -f
