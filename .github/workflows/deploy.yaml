@@ -21,6 +21,6 @@ jobs:
           cd telegram_search_bot
 
           sudo docker build -t pybot:latest .
-          sudo docker stop $(sudo docker ps -aq)
+          sudo docker stop $(sudo docker ps -aq) || true
           sudo docker run pybot:latest & disown
           sudo docker system prune -f
