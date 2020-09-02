@@ -10,3 +10,9 @@ jobs:
     - name: Hello!
       run: |
         echo Hello!
+
+    - uses: actions/checkout@v2
+    - name: Build docker
+      run: |
+        docker build -t pybot .
+
