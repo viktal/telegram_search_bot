@@ -3,7 +3,7 @@ name: Workflow dispatch
 on: [workflow_dispatch]
 
 jobs:
-  checks:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,6 +14,7 @@ jobs:
         host: ${{secrets.DEPLOY_IP}}
         username: ubuntu
         key: ${{secrets.DEPLOY_SSH_KEY}}
+        script_stop: true
         script: |
           rm -rf telegram_search_bot
           git clone https://github.com/viktal/telegram_search_bot.git
